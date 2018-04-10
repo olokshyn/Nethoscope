@@ -5,14 +5,14 @@
 #ifndef NETHOSCOPE_RULEFILTER_HPP
 #define NETHOSCOPE_RULEFILTER_HPP
 
-#include <ostream>
+class SystemCommand;
 
 class RuleFilter
 {
 public:
     virtual ~RuleFilter() = default;
 
-    virtual void dump(std::ostream& stream) const = 0;
+    virtual void dump_iptables(SystemCommand& stream) const = 0;
 };
 
 

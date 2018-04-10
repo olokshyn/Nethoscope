@@ -7,6 +7,7 @@
 #include <unordered_map>
 
 #include "Rule.hpp"
+#include "common/SystemCommand.hpp"
 
 namespace
 {
@@ -40,7 +41,7 @@ void Table::remove_rule(Chain::ChainType chain_type, const Rule& rule)
 
 void Table::add_rule(const Rule& rule)
 {
-    apply_to_all_chains([this](auto&&... args) -> decltype(auto)
+    apply_to_all_chains([this](auto&&... args)
                         {
                             return add_rule(std::forward<decltype(args)>(args)...);
                         },
@@ -49,7 +50,7 @@ void Table::add_rule(const Rule& rule)
 
 void Table::remove_rule(const Rule& rule)
 {
-    apply_to_all_chains([this](auto&&... args) -> decltype(auto)
+    apply_to_all_chains([this](auto&&... args)
                         {
                             return remove_rule(std::forward<decltype(args)>(args)...);
                         },

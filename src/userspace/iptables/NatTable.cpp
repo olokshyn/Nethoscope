@@ -4,7 +4,7 @@
 
 #include "NatTable.hpp"
 
-#include <iostream>
+#include "common/SystemCommand.hpp"
 
 NatTable::NatTable()
         : m_prerouting_chain(Chain::ChainType::PREROUTING),
@@ -13,7 +13,7 @@ NatTable::NatTable()
           m_postrouting_chain(Chain::ChainType::POSTROUTING)
 {}
 
-void NatTable::dump(std::ostream& stream) const
+void NatTable::dump(SystemCommand& stream) const
 {
     stream << "-t " << table_name(TableType::NAT) << " ";
 }

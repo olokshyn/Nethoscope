@@ -4,14 +4,14 @@
 
 #include "RawTable.hpp"
 
-#include <iostream>
+#include "common/SystemCommand.hpp"
 
 RawTable::RawTable()
         : m_prerouting_chain(Chain::ChainType::PREROUTING),
           m_output_chain(Chain::ChainType::OUTPUT)
 {}
 
-void RawTable::dump(std::ostream& stream) const
+void RawTable::dump(SystemCommand& stream) const
 {
     stream << "-t " << table_name(TableType::RAW) << " ";
 }

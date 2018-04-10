@@ -6,7 +6,6 @@
 #define NETHOSCOPE_RULE_HPP
 
 #include <memory>
-#include <ostream>
 
 class RuleFilter;
 class Table;

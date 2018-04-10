@@ -4,7 +4,7 @@
 
 #include "MangleTable.hpp"
 
-#include <iostream>
+#include "common/SystemCommand.hpp"
 
 MangleTable::MangleTable()
         : m_prerouting_chain(Chain::ChainType::PREROUTING),
@@ -14,7 +14,7 @@ MangleTable::MangleTable()
           m_postrouting_chain(Chain::ChainType::POSTROUTING)
 {}
 
-void MangleTable::dump(std::ostream& stream) const
+void MangleTable::dump(SystemCommand& stream) const
 {
     stream << "-t " << table_name(TableType::MANGLE) << " ";
 }

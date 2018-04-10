@@ -4,7 +4,7 @@
 
 #include "FilterTable.hpp"
 
-#include <iostream>
+#include "common/SystemCommand.hpp"
 
 FilterTable::FilterTable()
         : m_input_chain(Chain::ChainType::INPUT),
@@ -12,7 +12,7 @@ FilterTable::FilterTable()
           m_output_chain(Chain::ChainType::OUTPUT)
 {}
 
-void FilterTable::dump(std::ostream& stream) const
+void FilterTable::dump(SystemCommand& stream) const
 {
     stream << "-t " << table_name(TableType::FILTER) << " ";
 }

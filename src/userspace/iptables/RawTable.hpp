@@ -13,7 +13,7 @@ class RawTable : public Table
 public:
     RawTable();
 
-    void dump(std::ostream& stream) const override;
+    void dump(SystemCommand& stream) const override;
 
 private:
     Chain* prerouting_chain() override;

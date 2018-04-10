@@ -4,12 +4,14 @@
 
 #include "TCPRuleFilter.hpp"
 
+#include "common/SystemCommand.hpp"
+
 TCPRuleFilter::TCPRuleFilter(port_t source_port, port_t destination_port)
         : m_source_port(source_port),
           m_destination_port(destination_port)
 {}
 
-void TCPRuleFilter::dump(std::ostream& stream) const
+void TCPRuleFilter::dump_iptables(SystemCommand& stream) const
 {
     stream << "-p tcp ";
     if (m_source_port != no_port)

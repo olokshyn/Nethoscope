@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
+#include "common/Configuration.hpp"
 #include "iptables/Conductor.hpp"
 
 int main(int argc, char* argv[])
@@ -16,6 +18,8 @@ int main(int argc, char* argv[])
         std::ifstream rule_stream;
         rule_stream.exceptions(std::ios::failbit | std::ios::badbit);
         rule_stream.open(rules_filename);
+
+        Configuration::instance("iptables", "test");
 
         Conductor conductor(rule_stream);
 

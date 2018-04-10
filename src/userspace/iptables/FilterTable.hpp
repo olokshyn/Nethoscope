@@ -13,7 +13,7 @@ class FilterTable : public Table
 public:
     FilterTable();
 
-    void dump(std::ostream& stream) const override;
+    void dump(SystemCommand& stream) const override;
 
 private:
     Chain* input_chain() override;

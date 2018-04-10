@@ -19,7 +19,7 @@ public:
     explicit TCPRuleFilter(port_t source_port = no_port,
                            port_t destination_port = no_port);
 
-    void dump(std::ostream& stream) const override;
+    void dump_iptables(SystemCommand& stream) const override;
 
 private:
     const port_t m_source_port;

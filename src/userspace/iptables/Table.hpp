@@ -10,6 +10,7 @@
 #include "Chain.hpp"
 
 class Rule;
+class SystemCommand;
 
 class Table
 {
@@ -30,7 +31,7 @@ public:
     void add_rule(const Rule& rule);
     void remove_rule(const Rule& rule);
 
-    virtual void dump(std::ostream& stream) const = 0;
+    virtual void dump(SystemCommand& stream) const = 0;
 
 protected:
     const char* table_name(TableType table_type) const;

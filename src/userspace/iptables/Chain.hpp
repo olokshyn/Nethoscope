@@ -5,10 +5,10 @@
 #ifndef NETHOSCOPE_CHAIN_HPP
 #define NETHOSCOPE_CHAIN_HPP
 
-#include <iosfwd>
 #include <string>
 
 class Rule;
+class SystemCommand;
 
 class Chain
 {
@@ -25,7 +25,7 @@ public:
 public:
     explicit Chain(ChainType type);
 
-    void dump(std::ostream& stream) const;
+    void dump(SystemCommand& stream) const;
 
     ChainType type() const;
 

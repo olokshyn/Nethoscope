@@ -6,15 +6,13 @@ set(CMAKE_CXX_STANDARD 14)
 
 include_directories(src/userspace)
 
+file(GLOB common src/userspace/common/*.*pp)
+file(GLOB rulefilters src/userspace/common/rulefilters/*.*pp)
+
 set(SOURCE_FILES
         main.cpp
-        src/userspace/iptables/RuleFilter.hpp
-        src/userspace/iptables/TCPRuleFilter.cpp
-        src/userspace/iptables/TCPRuleFilter.hpp
-        src/userspace/iptables/RuleFilterParser.cpp
-        src/userspace/iptables/RuleFilterParser.hpp
-        src/userspace/iptables/TCPRuleFilterParser.cpp
-        src/userspace/iptables/TCPRuleFilterParser.hpp
+        ${common}
+        ${rulefilters}
         src/userspace/iptables/Chain.cpp
         src/userspace/iptables/Chain.hpp
         src/userspace/iptables/Table.cpp

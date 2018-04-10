@@ -14,8 +14,8 @@
 #include "NatTable.hpp"
 #include "MangleTable.hpp"
 
-#include "RuleFilterParser.hpp"
-#include "RuleFilter.hpp"
+#include "common/rulefilters/RuleFilterParser.hpp"
+#include "common/rulefilters/RuleFilter.hpp"
 
 Conductor::Conductor(std::istream& rule_stream)
         : m_raw_table(new RawTable()),

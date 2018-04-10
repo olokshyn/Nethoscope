@@ -8,16 +8,11 @@
 
 #include <sstream>
 
-#include "RuleFilter.hpp"
+#include "common/rulefilters/RuleFilter.hpp"
+#include "common/SystemCommand.hpp"
+#include "common/Configuration.hpp"
 #include "Table.hpp"
 #include "Chain.hpp"
-
-namespace
-{
-
-const char* const rule_prefix = "sudo ip netns exec test iptables ";
-
-}
 
 Rule::Rule(std::unique_ptr<RuleFilter> filter)
         : m_filter(std::move(filter))
@@ -37,28 +32,23 @@ void Rule::remove_rule(const Table& table, const Chain& chain) const
 
 void Rule::toggle_rule(bool add, bool first, const Table& table, const Chain& chain) const
 {
-    std::stringstream stream;
+    SystemCommand command;
+    Configuration::instance().prepare_iptables_command(command);
 
-    stream << rule_prefix;
-
-    table.dump(stream);
-    stream << (add ? (first ? "-I " : "-A ") : "-D ");
-    chain.dump(stream);
+    table.dump(command);
+    command << (add ? (first ? "-I " : "-A ") : "-D ");
+    chain.dump(command);
     if (first)
     {
-        stream << "1 ";
+        command << "1 ";
     }
 
     if (m_filter)
     {
-        m_filter->dump(stream);
+        m_filter->dump_iptables(command);
     }
 
-    stream << "-j LOG";
+    command << "-j LOG";
 
-    std::string iptables_rule = stream.str();
-    if (system(iptables_rule.c_str()) != 0)
-    {
-        throw std::runtime_error("Failed to toggle rule: " + iptables_rule);
-    }
+    command.execute();
 }

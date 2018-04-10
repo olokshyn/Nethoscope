@@ -8,6 +8,7 @@
 #include <sstream>
 
 #include "Rule.hpp"
+#include "common/SystemCommand.hpp"
 
 namespace
 {
@@ -36,7 +37,7 @@ Chain::Chain(ChainType type)
         : m_type(type)
 {}
 
-void Chain::dump(std::ostream& stream) const
+void Chain::dump(SystemCommand& stream) const
 {
     stream << chain_name(m_type) << " ";
 }
