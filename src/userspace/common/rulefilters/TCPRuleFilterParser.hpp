@@ -5,17 +5,9 @@
 #ifndef NETHOSCOPE_TCPRULEFILTERPARSER_HPP
 #define NETHOSCOPE_TCPRULEFILTERPARSER_HPP
 
-#include "RuleFilterParser.hpp"
+#include "TCPRuleFilter.hpp"
+#include "L4RuleFilterParser.hpp"
 
-class TCPRuleFilterParser : public RuleFilterParser
-{
-public:
-    explicit TCPRuleFilterParser(std::unique_ptr<RuleFilterParser> next_parser = nullptr);
-
-private:
-    bool can_parse(const std::string& rule) const override;
-    std::unique_ptr<RuleFilter> do_parse(const std::string& rule) const override;
-};
-
+using TCPRuleFilterParser = L4RuleFilterParser<TCPRuleFilter>;
 
 #endif //NETHOSCOPE_TCPRULEFILTERPARSER_HPP

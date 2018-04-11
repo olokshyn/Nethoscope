@@ -27,8 +27,6 @@ public:
 
     void dump(SystemCommand& stream) const;
 
-    ChainType type() const;
-
 private:
     const ChainType m_type;
 };

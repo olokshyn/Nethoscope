@@ -9,6 +9,7 @@
 
 #include "Rule.hpp"
 #include "common/SystemCommand.hpp"
+#include "common/Utils.hpp"
 
 namespace
 {
@@ -26,7 +27,7 @@ const char* chain_name(Chain::ChainType chain_type)
     auto iter = chain_names.find(chain_type);
     if (iter == chain_names.end())
     {
-        throw std::runtime_error("Invalid chain type");
+        THROW_EXCEPTION("Invalid chain type: " << static_cast<size_t>(chain_type));
     }
     return iter->second;
 }
@@ -40,9 +41,4 @@ Chain::Chain(ChainType type)
 void Chain::dump(SystemCommand& stream) const
 {
     stream << chain_name(m_type) << " ";
-}
-
-Chain::ChainType Chain::type() const
-{
-    return m_type;
 }

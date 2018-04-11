@@ -5,26 +5,10 @@
 #ifndef NETHOSCOPE_TCPRULEFILTER_HPP
 #define NETHOSCOPE_TCPRULEFILTER_HPP
 
-#include "RuleFilter.hpp"
+#include "L4RuleFilter.hpp"
 
-class TCPRuleFilter : public RuleFilter
-{
-public:
-    typedef unsigned short int port_t;
+constexpr const char tcp_proto_name[] = "tcp";
 
-public:
-    static const port_t no_port = 0;
-
-public:
-    explicit TCPRuleFilter(port_t source_port = no_port,
-                           port_t destination_port = no_port);
-
-    void dump_iptables(SystemCommand& stream) const override;
-
-private:
-    const port_t m_source_port;
-    const port_t m_destination_port;
-};
-
+using TCPRuleFilter = L4RuleFilter<tcp_proto_name>;
 
 #endif //NETHOSCOPE_TCPRULEFILTER_HPP
